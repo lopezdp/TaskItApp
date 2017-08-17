@@ -13,39 +13,54 @@
 
 ************************************************/
 
-var ar = [];
+// Code goes here
+// Create an activity class/object
+var Activity = {
 
-/* v2 deprecated
-let saveTasks = (ar) => {
-	this.ar = ar;
-	return this.ar;
+	ar: ['item1', 'item2'],
+
+	/* v2 deprecated
+	let saveTasks = (ar) => {
+		this.ar = ar;
+		return this.ar;
+	};
+	*/
+
+	// Display tasks
+	showTasks: function () {
+		let arStr = "";
+		for(let i = 0; i < this.ar.length; i++){
+			if(i === (this.ar.length - 1)){
+				arStr += (this.ar[i]);
+			}
+			else{
+				arStr += (this.ar[i] + ", ");
+			}
+		}
+		console.log("Activities: " + arStr);
+		return this.ar;
+	},
+
+	// Add tasks
+	addTask: function (newTask) {
+		this.ar.push(newTask);
+		this.showTasks();
+		return this.ar;
+	},
+
+	// Update tasks
+	updateTask: function (pos, newVal) {
+		this.ar[pos] = newVal;
+		this.showTasks();
+		return this.ar;
+	},
+
+	// Delete tasks
+	deleteTask: function (pos) {
+		this.ar.splice(pos, 1);
+		this.showTasks();
+		return this.ar;
+	}
 };
-*/
 
-// Display tasks
-let showTasks = (ar) => {
-	this.ar = ar;
-	console.log("Activities: " + this.ar);
-};
-
-// Add tasks
-let addTasks = (ar, newTask) => {
-	this.ar.push(newTask);
-	showTasks(this.arr);
-	return this.ar;
-};
-
-// Update tasks
-let updateTask = (ar, pos, newVal) => {
-	this.ar[pos] = newVal;
-	showTasks(this.ar);
-	return this.ar;
-};
-
-// Delete tasks
-let deleteTask = (ar, pos) => {
-	this.ar.splice(pos, 1);
-	showTasks(this.ar);
-	return this.ar;
-}
 
