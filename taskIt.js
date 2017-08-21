@@ -1,23 +1,30 @@
-/************************************************
+/*****************************************************************
 
-* It should have a place to store activities
-	* `var ar = []`
-* It should have a way to display activities
-	* `console.log("Tasks: " + ar);`
-* It should have a way to add new activities
-	* `ar.push('listItem');`
-* It should have a way to change activities
-	* ar[i] = 'newListItem';
-* It should have a way to delete activities
-	* `ar.splice(i, count);`
+Author: David P. Lopez
+Website: http://www.DavidPLopez.com
 
-************************************************/
+Purpose: The TaskIt App interface is an activity
+	tracker. The goal is to help users become more
+	productive by helping to keep users accountible
+	for what has to be executed everyday.
+
+License: GNU v3
+
+---
+
+### v5 Requirements
+
+* .showTasks should display .activityText
+* .showTasks should tell user if .ar is empty
+* .showTasks should show .completed
+
+*****************************************************************/
 
 // Code goes here
 // Create an activity class/object
 var Activity = {
 
-	ar: ['item1', 'item2'],
+	ar: [],
 
 	/* v2 deprecated
 	let saveTasks = (ar) => {
@@ -29,30 +36,36 @@ var Activity = {
 	// Display tasks
 	showTasks: function () {
 		let arStr = "";
-		for(let i = 0; i < this.ar.length; i++){
-			if(i === (this.ar.length - 1)){
-				arStr += (this.ar[i]);
-			}
-			else{
-				arStr += (this.ar[i] + ", ");
+		if(this.ar.length === 0){
+			console.log("Your tasks are empty!");
+			return 0;
+		} else {
+			console.log("Activities:\n");
+			for(let i = 0; i < this.ar.length; i++){
+				if(this.ar[i].completed === true){
+					console.log("(x)", this.ar[i].activityText);
+				} else {
+					console.log("( )", this.ar[i].activityText);
+				}
 			}
 		}
-		console.log("Activities: " + arStr);
-		return this.ar;
 	},
 
 	// Add tasks
-	addTask: function (newTask) {
-		this.ar.push(newTask);
+	addTask: function (activityText) {
+		this.ar.push({
+			activityText: activityText,
+			completed: false
+		});
 		this.showTasks();
 		return this.ar;
 	},
 
 	// Update tasks
-	updateTask: function (pos, newVal) {
-		this.ar[pos] = newVal;
+	updateTask: function (pos, activityText) {
+		this.ar[pos].activityText = activityText;
 		this.showTasks();
-		return this.ar;
+		return this.ar[pos];
 	},
 
 	// Delete tasks
@@ -60,7 +73,14 @@ var Activity = {
 		this.ar.splice(pos, 1);
 		this.showTasks();
 		return this.ar;
+	},
+
+	// Toggle completed tasks
+	toggleTask: function (pos){
+		var activity = this.ar[pos];
+		activity.completed = !activity.completed;
+		this.showTasks();
+		return this.ar;
+
 	}
 };
-
-
