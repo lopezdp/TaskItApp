@@ -35,7 +35,7 @@ var Activity = {
 
 	// Display tasks
 	showTasks: function () {
-		let arStr = "";
+
 		if(this.ar.length === 0){
 			console.log("Your tasks are empty!");
 			return 0;
@@ -69,6 +69,7 @@ var Activity = {
 	},
 
 	// Delete tasks
+	// .splice() not working right
 	deleteTask: function (pos) {
 		this.ar.splice(pos, 1);
 		this.showTasks();
@@ -81,6 +82,31 @@ var Activity = {
 		activity.completed = !activity.completed;
 		this.showTasks();
 		return this.ar;
+	},
 
+	// Toggle all tasks
+	toggleAll: function (){
+		let totalActivities = this.ar.length;
+		let completedActivities = 0;
+
+		for(let i = 0; i < totalActivities; i++){
+			if (this.ar[i].completed === true) {
+				completedActivities++;
+			}
+		}
+
+		// Case1: If everything true, then make everything false
+		if(completedActivities === totalActivities) {
+			// Make everything false
+			for(let i = 0; i < totalActivities; i++){
+				this.ar[i].completed = false;
+			}
+		} else {
+	      // Case2: Otherwise make everything true
+	      for(let i = 0; i < totalActivities; i++){
+	        this.ar[i].completed = true;
+      }
+    }
+    this.showTasks();
 	}
 };
