@@ -12,11 +12,12 @@ License: GNU v3
 
 ---
 
-### v5 Requirements
+### v7 Requirements
 
-* .showTasks should display .activityText
-* .showTasks should tell user if .ar is empty
-* .showTasks should show .completed
+* The should be a "Display Tasks" button and a "Toggle All"
+	button in the app.
+* Clicking "Display Tasks" should run Activity.showTasks().
+* Clicking "Toggle All" should run Activity.toggleAll().
 
 *****************************************************************/
 
@@ -102,11 +103,27 @@ var Activity = {
 				this.ar[i].completed = false;
 			}
 		} else {
-	      // Case2: Otherwise make everything true
-	      for(let i = 0; i < totalActivities; i++){
-	        this.ar[i].completed = true;
-      }
-    }
-    this.showTasks();
+			// Case2: Otherwise make everything true
+			for(let i = 0; i < totalActivities; i++){
+				this.ar[i].completed = true;
+			}
+	    }
+    	this.showTasks();
 	}
 };
+
+// Need access to display tasks button
+var displayTasksBtn = document.getElementById('display-tasks-btn');
+var toggleAllBtn = document.getElementById('toggle-all-btn');
+
+// Need to run showTasks() method when user
+	// clicks on Display Tasks button
+
+displayTasksBtn.addEventListener('click', function(){
+	Activity.showTasks();
+});
+
+toggleAllBtn.addEventListener('click', function(){
+	Activity.toggleAll();
+});
+

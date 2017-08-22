@@ -45,3 +45,10 @@
 * .showTasks should tell user if .ar is empty
 * .showTasks should show .completed
 
+### v7 Requirements
+
+* The should be a "Display Tasks" button and a "Toggle All"
+	button in the app.
+* Clicking "Display Tasks" should run Activity.showTasks().
+* Clicking "Toggle All" should run Activity.toggleAll().
+
